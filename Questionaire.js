@@ -103,13 +103,13 @@ inquirer.prompt(
     })
 })
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-  });
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'index.html'));
+//   });
 
-app.post('/api/characters', (req, res) => {
-    const newCharacter = req.body;
-})
+// app.post('/api/characters', (req, res) => {
+//     const newCharacter = req.body;
+// })
 
 // function employee(name, age, feet, inch, position) {
 //     this.fullname = name

@@ -2,35 +2,26 @@ const fs = require('fs')
 const inquirer = require('inquirer');
 inquirer.registerPrompt('loop', require('inquirer-loop')(inquirer));
 
+var http = require('http')
 
-inquirer.prompt(
-    [
-        {
-        type: 'input', 
-        name:"input_name", 
-        message:'what is filename.md?',
-        validate: (answer) => {
-            if(answer === '') {
-                return 'please enter a valid name'
-            }
-                return true
-            }
-        },
-        {
-        type:'input',
-        name:'content_question',
-        message: 'what will the ReadMe file contain?',
-        validate: (answer) => {
-            if(answer === '') {
-                    return 'please enter a valid name'
-            }
-                return true
-            }
-        },
-    ]
-).then(answers => {
-    const fileName = answers.input_name;
-    const content = answers.content_question;
-
-    const empHTML = document.implementation.createHTMLDocument(fileName)
-})
+http.createServer(function (req, res) {
+    var html = buildHtml(req);
+  
+    res.writeHead(200, {
+      'Content-Type': 'text/html',
+      'Content-Length': html.length,
+      'Expires': new Date().toUTCString()
+    });
+    res.end(html);
+  }).listen(8080);
+  
+  function buildHtml(req) {
+    var header = '';
+    var body = '';
+  
+    // concatenate header string
+    // concatenate body string
+  
+    return '<!DOCTYPE html>'
+         + '<html><head>' + header + '</head><body>' + body + '</body></html>';
+  };
