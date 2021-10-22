@@ -2,6 +2,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
+    "html": "^1.0.0",
     "http": "^0.0.1-security",
     "inquirer": "^8.2.0",
     "inquirer-loop": "^0.3.0",
