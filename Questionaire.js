@@ -2,6 +2,9 @@ const fs = require('fs')
 const inquirer = require('inquirer');
 inquirer.registerPrompt('loop', require('inquirer-loop')(inquirer));
 
+const express = require('express');
+const path = require('path');
+
 function employee(name, age, height, position) {
     this.name = name
     this.age = age
@@ -100,6 +103,13 @@ inquirer.prompt(
     })
 })
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+  });
+
+app.post('/api/characters', (req, res) => {
+    const newCharacter = req.body;
+})
 
 // function employee(name, age, feet, inch, position) {
 //     this.fullname = name
