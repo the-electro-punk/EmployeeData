@@ -2,17 +2,6 @@ const fs = require('fs')
 const inquirer = require('inquirer');
 inquirer.registerPrompt('loop', require('inquirer-loop')(inquirer));
 
-let webPage = document.getElementById('data')
-
-// const express = require('express');
-// const path = require('path');
-
-// function employee(name, age, height, position) {
-//     this.name = name
-//     this.age = age
-//     this.height = height
-//     this.position = position
-// }
 
 inquirer.prompt({
     type:'loop',
@@ -80,7 +69,7 @@ inquirer.prompt({
     // add code to fill data to new HTML file based on template
     // pass data and template html
     for (let i=0; i < answers.items.length; i++) {
-        let empData = webPage.createElement('p')
+        // let empData = webPage.createElement('p')
         console.log(answers.items[i].input_name)
         const fileName = answers.items[i].input_name;
         // console.log(fileName + 'is saved')
@@ -90,10 +79,10 @@ inquirer.prompt({
         const htEmp = answers.items[i].height_question;
         const jobEmp = answers.items[i].role_question;
         const fullstring = '\n' + '# '+ nameEmp + '\n' + 'age: ' + ageEmp + '\n' + 'height: ' + htEmp + '\n' + 'position: ' + jobEmp;
-        empData.textcontent = fullstring
+        // empData.textcontent = fullstring
 
         console.log(answers)
-        fs.appendFile(fileName, empData, function (err) {
+        fs.appendFile(fileName, fullstring, function (err) {
             if (err) throw err;
             console.log('saved')
     })

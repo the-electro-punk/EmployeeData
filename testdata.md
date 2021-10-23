@@ -14,3 +14,11 @@ position: Office Clerk
 age: 46
 height: 6'2
 position: Chief of Security
+# Benson
+age: 32
+height: 6'1
+position: Park Supervisor
+# Skips
+age: NaN
+height: 6'5
+position: Maintenance
