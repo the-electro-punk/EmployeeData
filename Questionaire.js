@@ -2,21 +2,23 @@ const fs = require('fs')
 const inquirer = require('inquirer');
 inquirer.registerPrompt('loop', require('inquirer-loop')(inquirer));
 
+let webPage = document.getElementById('data')
+
 // const express = require('express');
 // const path = require('path');
 
-function employee(name, age, height, position) {
-    this.name = name
-    this.age = age
-    this.height = height
-    this.position = position
-}
+// function employee(name, age, height, position) {
+//     this.name = name
+//     this.age = age
+//     this.height = height
+//     this.position = position
+// }
 
-inquirer.prompt(
-    // type:'loop',
-    // name:'items',
-    // message: 'add more?',
-    // questions: 
+inquirer.prompt({
+    type:'loop',
+    name:'items',
+    message: 'add more?',
+    questions: 
     [
         {
             type: 'input', 
@@ -74,14 +76,29 @@ inquirer.prompt(
             }
         },
     ]
-).then(answers => {
-    const fileName = answers.input_name;
-    const nameEmp = answers.name_question;
-    const ageEmp = answers.age_question
-    const htEmp = answers.height_question
-    const jobEmp = answers.role_question
+}).then(answers => { 
+    // add code to fill data to new HTML file based on template
+    // pass data and template html
+    for (let i=0; i < answers.items.length; i++) {
+        let empData = webPage.createElement('p')
+        console.log(answers.items[i].input_name)
+        const fileName = answers.items[i].input_name;
+        // console.log(fileName + 'is saved')
+        const nameEmp = answers.items[i].name_question;
+        // console.log('employee is ' + nameEmp)
+        const ageEmp = answers.items[i].age_question;
+        const htEmp = answers.items[i].height_question;
+        const jobEmp = answers.items[i].role_question;
+        const fullstring = '\n' + '# '+ nameEmp + '\n' + 'age: ' + ageEmp + '\n' + 'height: ' + htEmp + '\n' + 'position: ' + jobEmp;
+        empData.textcontent = fullstring
 
-    const fullstring = '\n' + '\n' + '# '+ nameEmp + '\n' + 'age: ' + ageEmp + '\n' + 'height: ' + htEmp + '\n' + 'position: ' + jobEmp;
+        console.log(answers)
+        fs.appendFile(fileName, empData, function (err) {
+            if (err) throw err;
+            console.log('saved')
+    })
+    }
+    // if statement to see what type of file is created
 
     // this constructor creates the data into an employee variable
     // let newEmp = new employee('name_question', 'age_question', 'height_question', 'role_question');
@@ -96,11 +113,7 @@ inquirer.prompt(
     // const fullstring = '# '+ nameEmp + '\n' + 'age: ' + ageEmp + '\n' + 'height: ' + htEmp + '\n' + 'position: ' + jobEmp; 
     
     // this adds the content to a new file
-    console.log(answers)
-    fs.appendFile(fileName, fullstring, function (err) {
-        if (err) throw err;
-        console.log('saved')
-    })
+    
 })
 
 // app.get('/', (req, res) => {

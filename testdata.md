@@ -1,14 +1,16 @@
-# John Doe
-age: 27
-height: 5'9
-position: office clerk
+
 
 # Jane Smith
 age: 25
 height: 5'4
-position: secretary
+position: Secretaryk
+
+# John Doe
+age: 27
+height: 5'9
+position: Office Clerk
 
 # William Afton
-age: 52
+age: 46
 height: 6'2
-position: Security Chief
+position: Chief of Security
