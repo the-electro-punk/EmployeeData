@@ -1,7 +1,12 @@
+// global.document = new JSDOM('html').window.document;
+// var jsdom = require("jsdom");
+// var JSDOM = jsdom.JSDOM;
+
 const fs = require('fs')
 const inquirer = require('inquirer');
 inquirer.registerPrompt('loop', require('inquirer-loop')(inquirer));
 
+let webPage = 'C:/Users/Ben/Desktop/_Coding BootCamp/_weeks lessons/week 10/EmployeeData/testing.html'
 
 inquirer.prompt({
     type:'loop',
@@ -72,6 +77,7 @@ inquirer.prompt({
         // let empData = webPage.createElement('p')
         console.log(answers.items[i].input_name)
         const fileName = answers.items[i].input_name;
+        console.log('file is '+fileName.file+'type')
         // console.log(fileName + 'is saved')
         const nameEmp = answers.items[i].name_question;
         // console.log('employee is ' + nameEmp)
@@ -79,10 +85,10 @@ inquirer.prompt({
         const htEmp = answers.items[i].height_question;
         const jobEmp = answers.items[i].role_question;
         const fullstring = '\n' + '# '+ nameEmp + '\n' + 'age: ' + ageEmp + '\n' + 'height: ' + htEmp + '\n' + 'position: ' + jobEmp;
-        // empData.textcontent = fullstring
+        webPage.textcontent = fullstring
 
         console.log(answers)
-        fs.appendFile(fileName, fullstring, function (err) {
+        fs.appendFile(fileName, webPage, function (err) {
             if (err) throw err;
             console.log('saved')
     })

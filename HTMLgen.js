@@ -1,18 +1,22 @@
+// const fs = require('fs')
+// const inquirer = require('inquirer');
+// inquirer.registerPrompt('loop', require('inquirer-loop')(inquirer));
+
 const fs = require('fs')
 const inquirer = require('inquirer');
 inquirer.registerPrompt('loop', require('inquirer-loop')(inquirer));
+const PORT = 3001
 
-let webPage = document.getElementById('data')
+var express = require('express');
+var app = express();
 
-// const express = require('express');
-// const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')))
+app.get('/', function(req,res) {
+  res.sendFile(__dirname+'C:/Users/Ben/Desktop/_Coding BootCamp/_weeks lessons/week 10/EmployeeData/testing.html');
+  res.send()
+})
 
-// function employee(name, age, height, position) {
-//     this.name = name
-//     this.age = age
-//     this.height = height
-//     this.position = position
-// }
+app.listen(3001)
 
 inquirer.prompt({
     type:'loop',
@@ -80,9 +84,10 @@ inquirer.prompt({
     // add code to fill data to new HTML file based on template
     // pass data and template html
     for (let i=0; i < answers.items.length; i++) {
-        let empData = webPage.createElement('p')
+        // let empData = webPage.createElement('p')
         console.log(answers.items[i].input_name)
         const fileName = answers.items[i].input_name;
+        console.log('file is '+fileName.file+'type')
         // console.log(fileName + 'is saved')
         const nameEmp = answers.items[i].name_question;
         // console.log('employee is ' + nameEmp)
@@ -90,12 +95,21 @@ inquirer.prompt({
         const htEmp = answers.items[i].height_question;
         const jobEmp = answers.items[i].role_question;
         const fullstring = '\n' + '# '+ nameEmp + '\n' + 'age: ' + ageEmp + '\n' + 'height: ' + htEmp + '\n' + 'position: ' + jobEmp;
-        empData.textcontent = fullstring
+        // webPage.textcontent = fullstring
 
         console.log(answers)
-        fs.appendFile(fileName, empData, function (err) {
+        fs.appendFile(fileName, fullstring, function (err) {
             if (err) throw err;
             console.log('saved')
+
+          app.get('/', (req, res) => {
+              res.sendFile(path.join(__dirname, 'index.html'));
+          });
+              
+              app.post('/api/employees', (req, res) => {
+                return res.json(fullstring);
+          })
+              
     })
     }
     // if statement to see what type of file is created
@@ -115,3 +129,10 @@ inquirer.prompt({
     // this adds the content to a new file
     
 })
+
+    // if statement to see what type of file is created
+    
+// })
+
+// <!-- need pre-built HTML and assign classes -->
+// <!-- can use <p> -->

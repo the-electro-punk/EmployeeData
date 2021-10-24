@@ -6,6 +6,7 @@
     "http": "^0.0.1-security",
     "inquirer": "^8.2.0",
     "inquirer-loop": "^0.3.0",
+    "jsdom": "^18.0.0",
     "path": "^0.12.7"
   }
 }
