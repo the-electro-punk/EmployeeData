@@ -5,6 +5,8 @@
 const fs = require('fs')
 const inquirer = require('inquirer');
 inquirer.registerPrompt('loop', require('inquirer-loop')(inquirer));
+
+let path = require('path')
 const PORT = 3001
 
 var express = require('express');
@@ -16,7 +18,9 @@ app.get('/', function(req,res) {
   res.send()
 })
 
-app.listen(3001)
+app.listen(PORT, () => {
+  console.log(`App listening on PORT ${PORT}`);
+});
 
 inquirer.prompt({
     type:'loop',
@@ -102,13 +106,13 @@ inquirer.prompt({
             if (err) throw err;
             console.log('saved')
 
-          app.get('/', (req, res) => {
-              res.sendFile(path.join(__dirname, 'index.html'));
-          });
+          // app.get('/', (req, res) => {
+          //     res.sendFile(path.join(__dirname, 'index.html'));
+          // });
               
-              app.post('/api/employees', (req, res) => {
-                return res.json(fullstring);
-          })
+          //     app.post('/api/employees', (req, res) => {
+          //       return res.json(fullstring);
+          // })
               
     })
     }
@@ -136,3 +140,6 @@ inquirer.prompt({
 
 // <!-- need pre-built HTML and assign classes -->
 // <!-- can use <p> -->
+
+
+// used for ref https://codeforgeek.com/render-html-file-expressjs/
