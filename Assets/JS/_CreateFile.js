@@ -27,19 +27,6 @@ inquirer.prompt({
                 return true
                 }
         },
-        // {
-        //     // this determines whether to add html base to file (mainly when appending file)
-        //     type: 'confirm', 
-        //     name:"html_base", 
-        //     message:'is html format needed?',
-        //     default: false,
-        //     validate: (answer) => {
-        //         if(answer === '') {
-        //             return 'please enter a valid name'
-        //         }
-        //         return true
-        //         }
-        // },
         {
             type:'input',
             name: 'name_question',

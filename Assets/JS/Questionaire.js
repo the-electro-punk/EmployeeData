@@ -27,19 +27,19 @@ inquirer.prompt({
                 return true
                 }
         },
-        // {
-        //     // this determines whether to add html base to file (mainly when appending file)
-        //     type: 'confirm', 
-        //     name:"html_base", 
-        //     message:'is html format needed?',
-        //     default: false,
-        //     validate: (answer) => {
-        //         if(answer === '') {
-        //             return 'please enter a valid name'
-        //         }
-        //         return true
-        //         }
-        // },
+        {
+            // this determines whether to add html base to file (mainly when appending file)
+            type: 'confirm', 
+            name:"html_base", 
+            message:'is html format needed?',
+            default: false,
+            validate: (answer) => {
+                if(answer === '') {
+                    return 'please enter a valid name'
+                }
+                return true
+                }
+        },
         {
             type:'input',
             name: 'name_question',
@@ -109,12 +109,12 @@ inquirer.prompt({
         let fullstring = htmlBase + '\n' + webContent
 
         // this determines if the base html code is needed or not so as not to multiples per file
-    //    if (answers.items[i].html_base === true) {
-    //         fullstring = htmlBase + '\n' + webContent
-    //    }
-    //    else {
-    //        fullstring = '\n' + webContent
-    //    }
+       if (answers.items[i].html_base === true) {
+            fullstring = htmlBase + '\n' + webContent
+       }
+       else {
+           fullstring = '\n' + webContent
+       }
 
         console.log(answers)
         // this writes the data to the file and can add to it if the program is run again
